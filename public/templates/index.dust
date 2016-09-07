@@ -1,0 +1,8 @@
+{>"layouts/master" /}
+
+{<body}
+    <body class="sidebar-mini skin-purple-light layout-boxed">
+    <section id="main" class="wrapper"></section>
+    <script src="/js/app-bundled.js"></script>
+    </body>
+{/body}

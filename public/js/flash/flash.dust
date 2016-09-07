@@ -1,0 +1,6 @@
+<div class="flash bg-{type} slideable hidden">
+    <button type="button" class="text-{type} close pull-right" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="text-{type}">{message}</h4>
+</div>

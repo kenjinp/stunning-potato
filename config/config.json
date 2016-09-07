@@ -1,0 +1,102 @@
+{
+  "redis": {
+        "host": "localhost",
+        "port": "6379",
+        "pass": ""
+    },
+  "callbackURL": "http://localhost:8000/auth",
+  "express": {
+        "view cache": false,
+        "view engine": "dust",
+        "views": "path:./public/templates"
+    },
+  "view engines": {
+    "dust": {
+			"module": "makara",
+			"renderer": {
+				"method": "dust",
+				"arguments": [
+					{
+						"cache": false,
+						"helpers": "config:dust.helpers",
+						"whitespace": true
+					}
+				]
+			}
+		}
+      },
+	"dust": {
+		"helpers": [
+			"dust-makara-helpers"
+		]
+	},
+	"i18n": {
+		"contentPath": "path:./locales",
+		"fallback": "en-US"
+	},
+	"specialization": {
+	},
+	"middleware": {
+    "session": {
+       "enabled": true,
+       "priority": 100,
+       "module": {
+             "name": "path:./libs/middleware/redis-session",
+             "arguments": [{"secret": "blahblah", "resave": true}],
+             "method": "middleware"
+       }
+    },
+		"makara": {
+			"priority": 100,
+			"enabled": true,
+			"module": {
+				"name": "makara",
+				"arguments": [
+					{
+						"i18n": "config:i18n",
+						"specialization": "config:specialization"
+					}
+				]
+			}
+		},
+		"static": {
+			"module": {
+				"arguments": [
+					"path:./.build"
+				]
+			}
+		},
+		"router": {
+			"module": {
+				"arguments": [
+					{
+						"directory": "path:./controllers"
+					}
+				]
+			}
+		},
+		"appsec": {
+			"enabled": true,
+			"priority": 110,
+			"module": {
+				"name": "lusca",
+				"arguments": [
+					{
+						"csrf": false,
+						"xframe": false,
+						"p3p": false,
+						"csp": false
+					}
+				]
+			}
+		}
+	},
+	"logger": {
+		"level": 0
+	},
+    "mongo": {
+		"host": "localhost",
+		"port": 27017,
+		"db": "krakbone-dev"
+	}
+}

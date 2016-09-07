@@ -1,0 +1,7 @@
+<section id="header"></section>
+<section id="sidebar"></section>
+<section class="content-wrapper">
+    <section id="flash"></section>
+    <section class="main-container"></section>
+</section>
+<section id="footer"></section>
